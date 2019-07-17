@@ -50,6 +50,21 @@ function GLInstance(canvasID) {
         return buf;
     }
 
+    /**
+     * https://www.youtube.com/watch?v=WMiggUPst-Q
+     * VBO -Vertex Buffer Object - встроенная в WebGL структура (стор)
+     * VAO - штука, которая говорит OpenGL, какую часть VBO следует использовать в последующих командах (итем в сторе)
+     *
+     * Специальная структура для представления меша в виде набора статичных буферов и привязки
+     * предопределенных атрибутов к ним
+     * [vector3] - Вершины
+     * [vector3] - Нормали
+     * [vector2] - UV (Позиция текстуры)
+     * Uint16Array - Индексы - указывают, где в VBO хранятся данные меша
+     * Имеет drawMode - способ отрисовки (полигоны, линии, точки)
+     *
+     * В mMeshCache меши кэшируются
+     */
     //Turns arrays into GL buffers, then setup a VAO that will predefine the buffers to standard shader attributes.
     gl.fCreateMeshVAO = function (name, aryInd, aryVert, aryNorm, aryUV) {
         var rtn = {drawMode: this.TRIANGLES};

@@ -21,7 +21,9 @@ function GLInstance(canvasID) {
         return this;
     }
 
-    //Create and fill our Array buffer.
+    /**
+     * Хэлпер для создания буфера - можно указать, статичный он или динамичный
+     */
     gl.fCreateArrayBuffer = function (floatAry, isStatic) {
         if (isStatic === undefined) isStatic = true; //So we can call this function without setting isStatic
 

@@ -1,3 +1,9 @@
+/**
+ * Класс для управления программой, содержит ссылки:
+ * program
+ * attribLoc - {position, norm, uv}
+ * uniformLoc - {}
+ */
 class Shader {
     constructor(gl, vertShaderSrc, fragShaderSrc) {
         this.program = ShaderUtil.createProgramFromText(gl, vertShaderSrc, fragShaderSrc, true);
@@ -38,7 +44,10 @@ class Shader {
     preRender() {
     } //abstract method, extended object may need need to do some things before rendering.
 
-    //Handle rendering a modal
+
+    /**
+     * гибкая привязка меша к программе
+     */
     renderModal(modal) {
         this.gl.bindVertexArray(modal.mesh.vao);	//Enable VAO, this will set all the predefined attributes for the shader
 

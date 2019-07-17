@@ -68,6 +68,10 @@ class ShaderUtil {
     // Helper functions
     //-------------------------------------------------
 
+    /**
+     * Просто сделай мне программу!
+     */
+
     //Pass in Script Tag IDs for our two shaders and create a program from it.
     static domShaderProgram(gl, vectID, fragID, doValidate) {
         var vShaderTxt = ShaderUtil.domShaderSrc(vectID);

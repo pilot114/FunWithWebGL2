@@ -1,3 +1,12 @@
+/**
+ * Обёртка над WebGLRenderingContext
+ *
+ * clearColor - установка цвета фона во время очистки буфера цвета (короче - фон)
+ * clear - очищает буфер
+ *
+ * Также корректно устанавливает размеры холста
+ */
+
 function GLInstance(canvasID) {
     var canvas = document.getElementById(canvasID),
         gl = canvas.getContext("webgl2");

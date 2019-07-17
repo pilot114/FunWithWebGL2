@@ -53,6 +53,7 @@
             //Set Up Data Buffers
             var mesh = gl.fCreateMeshVAO("dots", null, [0, 0, 0, 0.1, 0.1, 0, 0.1, -0.1, 0, -0.1, -0.1, 0, -0.1, 0.1, 0]);
             mesh.drawMode = gl.POINTS; //Most often the draw mode will be triangles, but in this instance we need Points
+            console.log(gl.mMeshCache);
 
             //There is many instances when we want a single mesh object shared between many
             //modals, for example trees. One mesh with many transforms technically.
@@ -89,6 +90,9 @@
             ).renderModal(gModal);
         }
 
+        /**
+         * Сюда выносим специфичное для конкретного шейдера (набор глобальных переменных)
+         */
         class TestShader extends Shader {
             constructor(gl) {
                 var vertSrc = ShaderUtil.domShaderSrc("vertex_shader"),
@@ -117,6 +121,8 @@
 </div>
 
 <!--https://stackoverflow.com/questions/11158223/uniform-versus-attributes-in-glsl-es-->
+<!-- Вершинный шейдер отвечает за то, чтобы перемещать вершины -->
+<!-- Фрагментный - за то, чтобы рисовать пиксели -->
 <script id="vertex_shader" type="x-shader/x-vertex">#version 300 es
 		in vec3 a_position;
 		

@@ -46,14 +46,17 @@
                 // 3. Link the shaders together as a program.
                 shaderProg = ShaderUtil.createProgram(gl, vShader, fShader, true);
 
-            // 4. Get Location of Uniforms and Attributes.
+            /**
+             * после useProgram мы можем ссылаться на атрибуты и uniform
+             */
             gl.useProgram(shaderProg);
             var aPositionLoc = gl.getAttribLocation(shaderProg, "a_position"),
                 uPointSizeLoc = gl.getUniformLocation(shaderProg, "uPointSize");
             gl.useProgram(null);
 
-            //............................................
-            //Set Up Data Buffers
+            /**
+             * Ложим в буфер статичный массив данных
+             */
             var aryVerts = new Float32Array([0, 0, 0, 0.5, 0.5, 0]),
                 bufVerts = gl.createBuffer();
 
@@ -61,12 +64,17 @@
             gl.bufferData(gl.ARRAY_BUFFER, aryVerts, gl.STATIC_DRAW);
             gl.bindBuffer(gl.ARRAY_BUFFER, null);
 
-            //............................................
-            //Set Up For Drawing
+            /**
+             * Задаём глобальную переменную для шейдеров
+             */
             gl.useProgram(shaderProg);				//Activate the Shader
             gl.uniform1f(uPointSizeLoc, 50.0);		//Store data to the shader's uniform variable uPointSize
 
-            //how its down without VAOs
+            /**
+             * так передаются аттрибуты без VAO
+             * По сути, мы просто связываем атрибут с буфером и говорим -
+             * это атрибут с вершинами, возьми из него 2 вершины
+             */
             gl.bindBuffer(gl.ARRAY_BUFFER, bufVerts);					//Tell gl which buffer we want to use at the moment
             gl.enableVertexAttribArray(aPositionLoc);					//Enable the position attribute in the shader
             gl.vertexAttribPointer(aPositionLoc, 3, gl.FLOAT, false, 0, 0);	//Set which buffer the attribute will pull its data from
@@ -81,6 +89,8 @@
     <canvas id="glcanvas"></canvas>
 </div>
 
+<!-- gl_PointSize - размер точки -->
+<!-- gl_Position - позиция точки -->
 <script id="vertex_shader" type="x-shader/x-vertex">#version 300 es
 		in vec3 a_position;
 		
@@ -94,6 +104,7 @@
 
 </script>
 
+<!-- precision - точность вычисления float (highp mediump lowp) -->
 <script id="fragment_shader" type="x-shader/x-fragment">#version 300 es
 		precision mediump float;
 

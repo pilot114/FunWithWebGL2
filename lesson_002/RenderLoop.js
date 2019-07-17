@@ -7,6 +7,10 @@ rloop = new RenderLoop(function(dt){
 },10).start();
 */
 
+
+/**
+ * Рендрерлуп отвечает за ограничение кадров + start/stop отрисовки
+ */
 class RenderLoop {
     constructor(callback, fps) {
         var oThis = this;
