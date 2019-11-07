@@ -1,5 +1,5 @@
 import gl							from "../gl.js";
-import fungi						from "../fungi.js";
+import fungi						from "../Fungi.js";
 import Transform					from "../entities/Transform.js";
 import {Vec3, Mat4, Quat, DEG2RAD}	from "../Maths.js";
 
